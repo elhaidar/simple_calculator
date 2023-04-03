@@ -5,6 +5,7 @@ const equalSign = document.querySelector(".equal-sign");
 const clearBtn = document.querySelector(".all-clear");
 const decimal = document.querySelector(".decimal");
 const percentage = document.querySelector(".percentage");
+const operatorInfo = document.getElementById("operator-info");
 
 let prevNumber,
   currentNumber = "0",
@@ -30,7 +31,6 @@ const calculate = () => {
   let result;
   let x = parseFloat(prevNumber);
   let y = parseFloat(currentNumber);
-  console.log(x, y);
   switch (calculationOperator) {
     case "+":
       result = x + y;
@@ -68,6 +68,10 @@ const inputPercentage = () => {
   currentNumber = parseFloat(currentNumber) / 100;
 };
 
+const updateScreen = (value) => {
+  calculatorScreen.children[1].textContent = value;
+};
+
 percentage.addEventListener("click", () => {
   inputPercentage();
   updateScreen(currentNumber);
@@ -76,15 +80,13 @@ percentage.addEventListener("click", () => {
 operators.forEach((operator) => {
   operator.addEventListener("click", (e) => {
     inputOperator(e.target.value);
+    operatorInfo.textContent = e.target.textContent;
   });
 });
 
-const updateScreen = (value) => {
-  calculatorScreen.value = value;
-};
-
 equalSign.addEventListener("click", () => {
   calculate();
+  operatorInfo.textContent = "";
   updateScreen(currentNumber);
 });
 
@@ -100,7 +102,6 @@ decimal.addEventListener("click", (e) => {
 
 numbers.forEach((number) => {
   number.addEventListener("click", (e) => {
-    console.log(e.target.value);
     inputNumber(e.target.value);
     updateScreen(currentNumber);
   });
