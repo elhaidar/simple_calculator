@@ -9,7 +9,7 @@ const operatorInfo = document.getElementById("operator-info");
 
 let prevNumber,
   currentNumber = "0",
-  calculationOperator;
+  calculationOperator = "";
 
 const inputNumber = (number) => {
   if (currentNumber === "0") {
@@ -20,7 +20,7 @@ const inputNumber = (number) => {
 };
 
 const inputOperator = (operator) => {
-  if (!calculationOperator) {
+  if (calculationOperator === "") {
     prevNumber = currentNumber;
   }
   calculationOperator = operator;
@@ -92,6 +92,7 @@ equalSign.addEventListener("click", () => {
 
 clearBtn.addEventListener("click", () => {
   clearAll();
+  operatorInfo.textContent = "";
   updateScreen(currentNumber);
 });
 
