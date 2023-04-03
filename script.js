@@ -12,7 +12,7 @@ let prevNumber,
   calculationOperator = "";
 
 const inputNumber = (number) => {
-  if (currentNumber === "0") {
+  if (currentNumber === "0" || currentNumber === 0) {
     currentNumber = number;
   } else {
     currentNumber += number;
@@ -65,7 +65,7 @@ const inputDecimal = (dot) => {
 };
 
 const inputPercentage = () => {
-  currentNumber = parseFloat(currentNumber) / 100;
+  return (currentNumber = parseFloat(currentNumber) / 100);
 };
 
 const updateScreen = (value) => {
